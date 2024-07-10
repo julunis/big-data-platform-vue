@@ -141,7 +141,7 @@ const handleCommand = (command) => {
                 <router-view></router-view>
             </el-main>
             <!-- 底部区域 -->
-            <el-footer>大事件 ©2023 Created by buct</el-footer>
+            <el-footer>大数据平台 ©2024 Created by buct</el-footer>
         </el-container>
     </el-container>
 </template>

@@ -43,12 +43,7 @@ const rules = {
 import { userRegisterService, userLoginService } from "@/api/user";
 const register = async () => {
     let result = await userRegisterService(registerData.value)
-    if(result.code == 0){
-        ElMessage.success(result.message ? result.message : '注册成功')
-    }else{
-        ElMessage.error('注册失败')
-    }
-    
+    ElMessage.success(result.message ? result.message : '注册成功')
 }
 
 //导入token状态
