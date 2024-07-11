@@ -7,7 +7,8 @@ import {
     Crop,
     EditPen,
     SwitchButton,
-    CaretBottom
+    CaretBottom,
+    Download
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
 
@@ -73,6 +74,12 @@ const handleCommand = (command) => {
         <el-aside width="200px">
             <div class="el-aside__logo"></div>
             <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff" router>
+                <el-menu-item index="/data/import">
+                    <el-icon>
+                        <Download />
+                    </el-icon>
+                    <span>数据导入</span>
+                </el-menu-item>
                 <el-menu-item index="/article/category">
                     <el-icon>
                         <Management />
@@ -104,7 +111,7 @@ const handleCommand = (command) => {
                         </el-icon>
                         <span>更换头像</span>
                     </el-menu-item>
-                    <el-menu-item index="/user/resetPassword">
+                    <el-menu-item index="/user/password">
                         <el-icon>
                             <EditPen />
                         </el-icon>

@@ -8,7 +8,7 @@ import ArticleManageVue from "@/views/article/ArticleManage.vue";
 import UserAvatarVue from "@/views/user/UserAvatar.vue";
 import UserInfoVue from "@/views/user/UserInfo.vue";
 import UserResetPasswordVue from "@/views/user/UserResetPassword.vue";
-
+import DataImportVue from "@/views/data/DataImport.vue";
 //定义路由关系
 const routes = [
     { 
@@ -18,13 +18,14 @@ const routes = [
     {
         path: "/",
         component: LayoutVue,
-        redirect: "/article/manage",
+        redirect: "/article/category",
         children: [
             { path: "/article/category", component: ArticleCategoryVue },
             { path: "/article/manage", component: ArticleManageVue },
             { path: "/user/avatar", component: UserAvatarVue },
             { path: "/user/info", component: UserInfoVue },
             { path: "/user/password", component: UserResetPasswordVue },
+            { path: "/data/import", component: DataImportVue },
         ],
     },
 ];
