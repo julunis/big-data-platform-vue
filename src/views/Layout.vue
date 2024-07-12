@@ -84,13 +84,13 @@ const handleCommand = (command) => {
                     <el-icon>
                         <Management />
                     </el-icon>
-                    <span>文章分类</span>
+                    <span>数据展示</span>
                 </el-menu-item>
                 <el-menu-item index="/article/manage">
                     <el-icon>
                         <Promotion />
                     </el-icon>
-                    <span>文章管理</span>
+                    <span>数据管理</span>
                 </el-menu-item>
                 <el-sub-menu>
                     <template #title>

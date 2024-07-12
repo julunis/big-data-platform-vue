@@ -1,5 +1,5 @@
 <template>
-  
+    xml-import
 </template>
 
 <script>
