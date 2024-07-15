@@ -11,9 +11,6 @@ const whichImport = (cardContent) => {
     case "excel":
       router.push("/data/import/excel");
       break;
-    case "csv":
-      router.push("/data/import/csv");
-      break;
     case "json":
       router.push("/data/import/json");
       break;
@@ -30,12 +27,13 @@ const whichImport = (cardContent) => {
 </script>
 <template>
   <el-card>
+    <div class="clearfix">
+      <span>请选择您要导入数据类型</span>
+    </div>
+    <el-driver />
     <div class="card-container">
       <el-card class="card-item" shadow="always" @click="whichImport('excel')"
         >excel</el-card
-      >
-      <el-card class="card-item" shadow="always" @click="whichImport('csv')"
-        >csv</el-card
       >
       <el-card class="card-item" shadow="always" @click="whichImport('json')"
         >json</el-card
@@ -69,6 +67,11 @@ const whichImport = (cardContent) => {
   transform: scale(1.1); /* 放大 */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 阴影加深 */
   color: #ff47f3; /* 内容变色 */
+}
+.clearfix {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 </style>
 
