@@ -14,6 +14,7 @@ import JsonImportVue from "@/views/data-import/JsonImport.vue"; //json文件数�
 import SqlImportVue from "@/views/data-import/SqlImport.vue"; //sql文件数据导入
 import XmlImportVue from "@/views/data-import/XmlImport.vue"; //xml文件数据导入
 import DataImportSuccessVue from "@/views/data-import/DataImportSuccess.vue"; //数据导入成功
+import DataManagementVue from "@/views/data-management/DataManagement.vue"; //数据管理
 //定义路由关系
 const routes = [
     {
@@ -36,6 +37,7 @@ const routes = [
             { path: "/data/import/sql", component: SqlImportVue },
             { path: "/data/import/xml", component: XmlImportVue },
             { path: "/data/import/success", component: DataImportSuccessVue },
+            { path: "/data/management", component: DataManagementVue },
         ],
     },
 ];
