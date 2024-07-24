@@ -7,17 +7,15 @@ import {
     Crop,
     EditPen,
     SwitchButton,
-    CaretBottom,
-    Download
+    CaretBottom
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
-
-//导入接口函数
-import { userInfoGetService } from '@/api/user.js'
+import { onMounted } from 'vue'
 //导入pinia
 import { useUserInfoStore } from '@/stores/user.js'
 const userInfoStore = useUserInfoStore();
-import { ref } from 'vue'
+//导入接口函数
+import { userInfoGetService } from '@/api/user.js'
 
 //获取个人信息
 const getUserInf = async () => {
@@ -30,14 +28,14 @@ getUserInf()
 //dropDown条目被点击后，回调的函数
 import { useRouter } from 'vue-router'
 const router = useRouter()
-import {ElMessage,ElMessageBox} from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { useTokenStore } from '@/stores/token.js'
 const tokenStore = useTokenStore()
 const handleCommand = (command) => {
     if (command === 'logout') {
         //退出登录
         ElMessageBox.confirm(
-            '你确认退出登录码？',
+            '你确认退出登录么？',
             '温馨提示',
             {
                 confirmButtonText: '确认',
@@ -65,67 +63,19 @@ const handleCommand = (command) => {
         router.push('/user/' + command)
     }
 }
-
 </script>
 
 <template>
     <el-container class="layout-container">
-        <!-- 左侧菜单 -->
-        <el-aside width="200px">
-            <div class="el-aside__logo"></div>
-            <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff" router>
-                <el-menu-item index="/data/import">
-                    <el-icon>
-                        <Download />
-                    </el-icon>
-                    <span>数据导入</span>
-                </el-menu-item>
-                <el-menu-item index="/article/manage">
-                    <el-icon>
-                        <Management />
-                    </el-icon>
-                    <span>数据展示</span>
-                </el-menu-item>
-                <el-menu-item index="/data/management">
-                    <el-icon>
-                        <Promotion />
-                    </el-icon>
-                    <span>数据管理</span>
-                </el-menu-item>
-                <el-sub-menu>
-                    <template #title>
-                        <el-icon>
-                            <UserFilled />
-                        </el-icon>
-                        <span>个人中心</span>
-                    </template>
-                    <el-menu-item index="/user/info">
-                        <el-icon>
-                            <User />
-                        </el-icon>
-                        <span>基本资料</span>
-                    </el-menu-item>
-                    <el-menu-item index="/user/avatar">
-                        <el-icon>
-                            <Crop />
-                        </el-icon>
-                        <span>更换头像</span>
-                    </el-menu-item>
-                    <el-menu-item index="/user/password">
-                        <el-icon>
-                            <EditPen />
-                        </el-icon>
-                        <span>重置密码</span>
-                    </el-menu-item>
-                </el-sub-menu>
-            </el-menu>
-        </el-aside>
-        <!-- 右侧主区域 -->
-        <el-container>
-            <!-- 头部区域 -->
-            <el-header>
-                <div><strong>{{ userInfoStore.info.nickname ? userInfoStore.info.nickname : userInfoStore.info.usrename
-                        }}</strong></div>
+        <el-header>
+            <el-col class="header-menu" :span="18" :offset="3">
+                <el-menu mode="horizontal" :ellipsis="false" router :default-active="router.currentRoute.value.path">
+                    <el-menu-item index="/data/import"><strong>数据导入</strong></el-menu-item>
+                    <el-menu-item index="/data/management"><strong>数据管理</strong></el-menu-item>
+                    <el-menu-item index="/data/process"><strong>数据处理</strong></el-menu-item>
+                </el-menu>
+            </el-col>
+            <el-col class="header-user" :span="3">
                 <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
                         <el-avatar :src="userInfoStore.info.userPic ? userInfoStore.info.userPic : avatar" />
@@ -142,14 +92,12 @@ const handleCommand = (command) => {
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
-            </el-header>
-            <!-- 中间区域 -->
-            <el-main>
-                <router-view></router-view>
-            </el-main>
-            <!-- 底部区域 -->
-            <el-footer>大数据平台 ©2024 Created by buct</el-footer>
-        </el-container>
+            </el-col>
+        </el-header>
+        <el-main>
+            <router-view>
+            </router-view>
+        </el-main>
     </el-container>
 </template>
 
@@ -157,24 +105,26 @@ const handleCommand = (command) => {
 .layout-container {
     height: 100vh;
 
-    .el-aside {
-        background-color: #232323;
-
-        &__logo {
-            height: 120px;
-            background: url('@/assets/logo.png') no-repeat center / 120px auto;
-        }
-
-        .el-menu {
-            border-right: none;
-        }
-    }
-
     .el-header {
         background-color: #fff;
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .header-menu{
+            display: flex;
+            justify-content: center;
+        }
+
+        .el-menu-item {
+            font-size: 16px;
+            width: 12vw;
+        }
+
+        .header-user{
+            display: flex;
+            justify-content: right;
+        }
 
         .el-dropdown__box {
             display: flex;
@@ -192,12 +142,9 @@ const handleCommand = (command) => {
         }
     }
 
-    .el-footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        color: #666;
+    .el-main {
+        padding: 10px 5px;
     }
+
 }
 </style>

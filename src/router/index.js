@@ -15,6 +15,12 @@ import SqlImportVue from "@/views/data-import/SqlImport.vue"; //sql文件数据�
 import XmlImportVue from "@/views/data-import/XmlImport.vue"; //xml文件数据导入
 import DataImportSuccessVue from "@/views/data-import/DataImportSuccess.vue"; //数据导入成功
 import DataManagementVue from "@/views/data-management/DataManagement.vue"; //数据管理
+import DataProcessVue from "@/views/data-process/DataProcess.vue"
+import DataChartFormVue from "@/views/data-management/DataChartForm.vue"
+import DataChartCircularVue from "@/views/data-management/DataChartCircular.vue"
+import DataChartLineVue from "@/views/data-management/DataChartLine.vue"
+import DataChartHistogramVue from "@/views/data-management/DataChartHistogram.vue"
+import DataChartPieVue from "@/views/data-management/DataChartPie.vue"
 //定义路由关系
 const routes = [
     {
@@ -37,7 +43,18 @@ const routes = [
             { path: "/data/import/sql", component: SqlImportVue },
             { path: "/data/import/xml", component: XmlImportVue },
             { path: "/data/import/success", component: DataImportSuccessVue },
-            { path: "/data/management", component: DataManagementVue },
+            { 
+                path: "/data/management", component: DataManagementVue,
+                redirect: "/data/management/form/",
+                children: [
+                    { path : "/data/management/form/", component: DataChartFormVue },
+                    { path : "/data/management/circular/", component: DataChartCircularVue },
+                    { path : "/data/management/line/", component: DataChartLineVue },
+                    { path : "/data/management/histogram/", component: DataChartHistogramVue },
+                    { path : "/data/management/pie/", component: DataChartPieVue },
+                ]
+             },
+            { path: "/data/process", component: DataProcessVue },
         ],
     },
 ];

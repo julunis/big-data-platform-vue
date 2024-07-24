@@ -1,7 +1,7 @@
 <template>
   <div>
-    数据展示
-    </div>
+    数据处理
+  </div>
 </template>
 
 <script>
