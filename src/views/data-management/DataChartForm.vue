@@ -9,11 +9,17 @@
  import { ref } from 'vue'
  import { onMounted } from 'vue'
  import * as echarts from 'echarts'
-// // 获取路由跳转时传入的option参数，形式为Params类型
-// // console.log(this.$route.params)
-// const route = useRoute()
+// 获取路由参数
+const route = useRoute()
+const chartType = ref(JSON.parse(route.query.chartType))
+const selectedPropList = ref(JSON.parse(route.query.selectedPropList))
+const currentRow = ref(JSON.parse(route.query.currentRow))
 // //画图表的配置项
 const option = ref({
+  // 添加图表标题
+  title: {
+    text: currentRow.value.name,
+  },
   tooltip: {
     trigger: 'axis'
   },
@@ -98,6 +104,9 @@ const drawEcharts = (option)=>{
 
 onMounted(()=>{
     drawEcharts(option.value)
+     console.log(chartType)
+     console.log(selectedPropList.value)
+     console.log(currentRow.value)
 })
 </script>
 
