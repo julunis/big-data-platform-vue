@@ -6,13 +6,13 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 // 导入echarts
 import * as echarts from 'echarts'
-const currentRow = ref(null)
+
 const gotoImport = () => {
     // 跳转到数据导入页面,并传递参数option1
-
     router.push('/data/import')
 }
 
+//数据集
 const tableData = [
     {
         name: '电池数据',
@@ -160,10 +160,12 @@ const tableData = [
         ]
     }
 ]
-
-const selectedPropList = ref([])
-const chartType = ref(null)
-
+//选择的数据集对应的属性列表
+const selectedPropList = ref(tableData[0].propList)
+//图表类型
+const chartType = ref('form')
+// 选定的数据集
+const currentRow = ref(tableData[0])
 const handleCurrentChange = (val) => {
     currentRow.value = val
     console.log(currentRow.value.propList)
@@ -171,12 +173,23 @@ const handleCurrentChange = (val) => {
 }
 onMounted(() => {
      goto_chart('form')
+    //  console.log(chartType)
+    //  console.log(selectedPropList.value)
+    //  console.log(currentRow.value)
 })
 // 点击不同的图表，跳转到不同的图表页面
-const goto_chart = (chartType) => {
+const goto_chart = (chartType1) => {
 
     // router.push('/data/management/'+chartType,{option:option1.value})
-    router.push({ path: '/data/management/' + chartType })
+    router.push({ 
+        path: '/data/management/' + chartType1, 
+        query: { 
+            selectedPropList:JSON.stringify(selectedPropList.value),
+            chartType:JSON.stringify(chartType.value),
+            currentRow:JSON.stringify(currentRow.value) 
+        }
+    })
+    // console.log(this.chartType)
 }
 </script>
 
